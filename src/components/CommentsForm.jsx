@@ -13,7 +13,6 @@ const CommentsForm = () => {
   const createCommentMutation = useMutation({
     mutationFn: createComment,
     onSuccess: (newObject) => {
-      console.log('N', newObject)
       const prevComments = queryClient.getQueryData(['comments'])
       queryClient.setQueryData(['comments'],prevComments.concat(newObject))
       queryClient.invalidateQueries(['comments'])
