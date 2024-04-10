@@ -16,7 +16,6 @@ const Blog = () => {
   const deleteBlogMutation = useMutation({
     mutationFn: deleteBlog,
     onSuccess: () => {
-      console.log('deleted with success')
       const prevBlogs = queryClient.getQueryData(['blogs'])
       queryClient.setQueryData(['blogs'], prevBlogs.filter(b => {
         return b.id !== blog.id
@@ -33,7 +32,6 @@ const Blog = () => {
     mutationFn: updateBlog,
     onSuccess: (newObject) => {
       const prevBlogs = queryClient.getQueryData(['blogs'])
-      console.log('n', newObject)
       queryClient.setQueryData(['blogs'], prevBlogs.map(b => {
         return b.id === newObject.id
           ?newObject
@@ -49,7 +47,6 @@ const Blog = () => {
 
   const handleLikeBlog = (blog) => {
     const updatedBlog = { ...blog, likes: blog.likes + 1 }
-    console.log(updatedBlog)
     voteBlogMutation.mutate(updatedBlog)
   }
 
